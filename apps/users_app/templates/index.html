@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login and Registration</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+	{% load static %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" >
+</head>
+<body>
+<div class="container">
+
+	<nav class="navbar navbar-light bg-light">
+	  <form action = "/login" method = "post" class="form-inline">
+	  	{% csrf_token %}
+	    <div class="input-group">
+	      <div class="input-group-prepend">
+	        <span class="input-group-text" id="basic-addon1">Email</span>
+	      </div>
+	      <input type="text" class="form-control" placeholder="email" name = "email" aria-label="email" aria-describedby="basic-addon1">
+	    </div>
+	    <div class="input-group">
+	      <div class="input-group-prepend">
+	        <span class="input-group-text" id="basic-addon1">Password</span>
+	      </div>
+	      <input type="password" class="form-control" name ="password" placeholder="password" aria-label="password" aria-describedby="basic-addon1">
+	    </div>
+
+	    <button class="btn btn-outline-success" type="submit">Login</button>
+	    <a href = "/register" method = 'post'><button class="btn btn-outline-success" type="button">Register</button></a>
+
+	  </form>
+	</nav>
+	{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+	<div class="row"></div>
+
+		<div class="col col-4">
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
+
