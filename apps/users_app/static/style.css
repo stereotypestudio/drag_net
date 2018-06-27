@@ -1,0 +1,29 @@
+.col {
+	padding: 20px;
+	margin-top: 20px;
+}
+
+/*.navbar-dark{
+
+background: linear-gradient(270deg, #ec0505, #e4af07, #c2e407, #1ce407, #07cfe4, #9507e4);
+
+	-webkit-animation: AnimationName 0s ease infinite;
+	-moz-animation: AnimationName 0s ease infinite;
+	animation: AnimationName 0s ease infinite;
+
+	@-webkit-keyframes AnimationName {
+	    0%{background-position:0% 50%}
+	    50%{background-position:100% 50%}
+	    100%{background-position:0% 50%}
+	}
+	@-moz-keyframes AnimationName {
+	    0%{background-position:0% 50%}
+	    50%{background-position:100% 50%}
+	    100%{background-position:0% 50%}
+	}
+	@keyframes AnimationName { 
+	    0%{background-position:0% 50%}
+	    50%{background-position:100% 50%}
+	    100%{background-position:0% 50%}
+	}
+}*/

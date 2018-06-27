@@ -9,9 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" >
 </head>
 <body>
-<div class="container">
-
-	<nav class="navbar navbar-light bg-light">	
+	<nav class="navbar navbar-dark bg-dark">	
 		<span class="navbar-text">
 		    Hi there {{request.session.dragName}}
 		</span>
@@ -24,22 +22,64 @@
    		{% endfor %}
 		</ul>
 	{% endif %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
 
-	<div class="row"></div>
+				<p>Name: {{user.dragName}}</p>
+				<p>Of house {{user.houseName}}</p>
 
-		<div class="col col-4">
+				<img src = "{{user.profile_image.url}}">
 
-			<p>Name: {{user.dragName}}</p>
-			<p>Of house {{user.houseName}}</p>
+				<form action = "/uploadPicture" method = 'post' enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="file" name="profile-picture">
+					<input type="submit" name="submit">
+				</form>
 
-		</div>
+			</div>
 
-		<div class = "col col-4">
-			
-			
+			<div class = "col-sm align-self-end">
+				
+				<div class="card" >
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <form class = "form-group" action = "/events/submitEvent/{{user.id}}" method = "post">
+				    	{% csrf_token %}
+						<label>Location:</label>
+						<input class = "form-control" type="text" name="location">
+						<label>Address:</label>
+						<input class = "form-control" type="text" name="address">
+						<label>Description:</label>
+						<input class = "form-control" type="text" name="desc">
+						<label>Date and time:</label>
+						<input class = "form-control" type="datetime-local" name="dateTime">
+
+				    	<button class = "btn btn-primary">+</button>
+
+				    </form>
+				  </div>
+				</div>
+
+				<div class="card">
+				  <div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+			<div class = "col-sm">
+				<div class = "card">
+					<div class="card-body">
+				    <h5 class="card-title">Card title</h5>
+				    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 
 </body>
 </html>

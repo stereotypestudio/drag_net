@@ -1,0 +1,9 @@
+{% if queens.count > 0%}
+
+{% for queen in queens %}
+	<li>{{queen.dragName}}</li>
+{% endfor %}
+{% else %}
+
+<p>Nothing to show!</p>
+{% endif%}

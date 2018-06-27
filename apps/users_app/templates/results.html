@@ -1,0 +1,10 @@
+
+{% if results %}
+{% for r in results %}
+	<a href = "/user">{{ r.dragName}} of house {{ r.houseName }}</a>
+{% endfor %}
+{% else %}
+	<div class="note">
+	Your search yielded no results
+	</div>
+{% endif %}

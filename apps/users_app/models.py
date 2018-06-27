@@ -37,5 +37,7 @@ class User(models.Model):
 	houseName = models.CharField(max_length = 255)
 	email = models.CharField(max_length = 255)
 	password_hash = models.CharField(max_length = 255)
+	genre = models.CharField(max_length = 255)
+	profile_image = models.ImageField(upload_to = 'profile_image', blank = True)
 
 	objects = UserManager()
