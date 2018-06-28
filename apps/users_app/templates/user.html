@@ -29,7 +29,7 @@
 			<div class="col col-4">
 				
 				{% load static %}
-				<img class="img-fluid" src="{% static "bob-image_1.jpg" %}" alt="My image"/>
+				<img class="img-fluid" src="{{queen.profile_image.url}}" alt="My image"/>
 				<p>This is a side bar for picture stats</p>
 				<p>{{queen.dragName}}</p>
 				<p>{{queen.houseName}}</p>
@@ -43,39 +43,64 @@
 			<div class="col col-8">
 				<div class="row">
 					<div class="col col-6">
-						<p>Here's some events</p>
+						<h3>Where's she werkin'?</h3>
 						{% for event in events %}
-							<p>{{event.location}}</p>
-							<p>{{event.address}}</p>
-							<p>{{event.desc}}</p>
-							<p>{{event.dateTime}}</p>
+							<h5>{{event.location}}</h5>
+							<p>{{event.dateTime}}, <span class = "address">{{event.address}}</span></p>
+							{{event.desc}}
+							{% if request.session.user == queen.id %}
+								<form action = "../events/deleteEvent/{{event.id}}" method = "post">
+									{% csrf_token %}
+									<button class = "btn btn-sm btn-danger">Cancel</button>
+								</form>
+								{% endif %}
 						{% endfor %}
 					</div>
 					<div class="col col-6">
 						<p>Hopefully a map</p>
+						<div id="map"></div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col col-8">
 						<p>Here's some comments</p>
-						<form action = "comment/submit-comment" method = "post" class = "form-group">
+						<form action = "comment/submit-comment" method = "post" class = "form-group comment-form">
 							{% csrf_token %}
 							<textarea class = "form-control" name = "content"></textarea>
 							<button class = "btn btn-outline-primary form-control">Gurl!</button>
 						</form>
-
-						{% for comment in comments %}
-							<p>On {{comment.created_at}}, bitch said:</p>
-							<p>{{comment.content}}</p>
-						{% endfor %}
+						<div class = "comments">
+							{% for comment in comments %}
+								<p>On {{comment.created_at}}, bitch said:</p>
+								<p>{{comment.content}}</p>
+								{% if request.session.user == queen.id %}
+								<form action = "../comment/delete-comment/{{comment.id}}" method = "post">
+									{% csrf_token %}
+									<button class = "btn btn-danger">Shush</button>
+								</form>
+								{% endif %}
+							{% endfor %}
+						</div>
 					</div>
 					<div class="col col-4">
 						<p>Hopefully a youtube playlist</p>
+						{% if queen.feat_vid %}
+							{{queen.feat_vid}}
+						{% endif %}
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src = "{% static 'ajax.js' %}" ></script>
+<script type="text/javascript" src="{% static 'map.js' %}"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDubar3cMJcaHP3CH9tkHXHpmKAATQj-GA&callback=initMap">
+</script>
 </body>
+
+
 </html>

@@ -1,6 +1,62 @@
 .col {
 	padding: 20px;
+	margin-top: 10px;
+}
+.card {
+
 	margin-top: 20px;
+}
+
+.btn {
+	margin-top: 10px;
+}
+
+.address {
+	font-size: 10px
+	color: lightgray;
+}
+
+.search {
+	height:auto;
+
+}
+
+.search input[type=text] {
+    width: 200px;
+    padding: 10px;
+    margin-top: 10%;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+     -webkit-transition: margin-top 0.2s ease-in-out;
+    transition: margin-top 0.2s ease-in-out;
+
+}
+
+.search input[type=text]:focus {
+    width: 50%;
+    margin-top: 2%;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    max-width: auto; 
+    min-height: 100%;
+}
+
+.content {
+    position: fixed;
+    top: 10%;
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  background-color: grey;
 }
 
 /*.navbar-dark{

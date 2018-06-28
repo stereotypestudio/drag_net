@@ -3,17 +3,13 @@ from apps.users_app.models import *
 from apps.comments_app.models import *
 from apps.events_app.models import *
 from django.contrib import messages
-from django.template.context_processors import csrf
-from .forms import UploadFileForm
+# from .forms import UploadFileForm
 import bcrypt
 
 # Create your views here.
 def index(request):
 
-	args = {}
-	args.update(csrf(request))
-
-	return render(request, "index.html", args)
+	return render(request, "index.html")
 
 def login(request):
 	errors = User.objects.login_validator(request.POST)
@@ -56,8 +52,10 @@ def submitRegister(request):
 	houseName = request.POST['houseName']
 	email = request.POST['email']
 	password_hash  = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+	genre = request.POST['genre']
+	profile_image = request.FILES.get('profile-picture')
 
-	user = User.objects.create(dragName = dragName, houseName = houseName, email = email, password_hash = password_hash)
+	user = User.objects.create(dragName = dragName, houseName = houseName, email = email, password_hash = password_hash, genre = genre, profile_image = profile_image)
 
 	request.session['user'] = user.id
 
@@ -71,15 +69,15 @@ def home(request):
 
 	return render(request, 'home.html', {'user' : user})
 
-def user(request):
+def user(request, id):
 
-	queen = User.objects.first()
+	queen = User.objects.get(id = id)
 	request.session['queen'] = queen.id
 	comments = Comment.objects.filter(queen = queen)
 	events = Event.objects.filter(queen = queen)
 
-	for key in request.session.keys():
-		print(request.session[key])
+	print(request.session['user'])
+	print(queen.id)
 
 	return render(request, "user.html", {'queen' : queen, 'comments' : comments, 'events': events})
 

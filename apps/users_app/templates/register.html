@@ -22,46 +22,49 @@
 	  </form>
 	</nav>
 	{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+		<ul class="messages">
+    	{% for message in messages %}
+    		<li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+   		{% endfor %}
+		</ul>
+	{% endif %}
 
 	<div class="row"></div>
 
 		<div class="col col-4">
 
-	<h2>Hey qween</h2>
+		<h2>Hey qween</h2>
 
-		<form class = "form-group" action = "/submitRegister" method="post">
-			{% csrf_token %}
-			<label>Give us that gorgeous drag name, hunty</label>
-			<input class = "form-control" type="text" name="dragName">
-			<label>Love it, don't change a thing. What house are you from?</label>
-			<input class = "form-control" type="text" name="houseName">
-			<label>Lemme get that email so we can have a kiki:</label>
-			<input class = "form-control" type="text" name="email">
-			<label>Let's make a super secret password</label>
-			<input class = "form-control" type="password" name="password">
-			<label>And let's make sure you haven't had too many cosmos and confirm that password:</label>
-			<input class = "form-control" type="password" name="confirm-pw">
-			<label>And finally, type of fierce queen are you?</label>
-			<select>
-				<option>Fish</option>
-				<option>Pagent</option>
-				<option>Comedy</option>
-				<option>Alternative</option>
-				<option>Dancer</option>
-				<option>Theater</option>
-			</select>
-			
+			<form class = "form-group" action = "/submitRegister" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<label>Give us that gorgeous drag name, hunty</label>
+				<input class = "form-control" type="text" name="dragName">
+				<label>Love it, don't change a thing. What house are you from?</label>
+				<input class = "form-control" type="text" name="houseName">
+				<label>Lemme get that email so we can have a kiki:</label>
+				<input class = "form-control" type="text" name="email">
+				<label>Let's make a super secret password</label>
+				<input class = "form-control" type="password" name="password">
+				<label>And let's make sure you haven't had too many cosmos and confirm that password:</label>
+				<input class = "form-control" type="password" name="confirm-pw">
+				<label>Show us that beaten-for-the-gods face:</label>
+				<input class = "form-control" type = "file" name = "profile-picture">
+				<label>And finally, type of fierce queen are you?</label>
+				<select name = "genre">
+					<option>Fish</option>
+					<option>Pagent</option>
+					<option>Comedy</option>
+					<option>Alternative</option>
+					<option>Dancer</option>
+					<option>Theater</option>
+				</select>
 
-			<button class = "btn btn-primary" type="submit">Register</button>
-			
+				
 
-		</form>
+				<button class = "btn btn-primary" type="submit">Register</button>
+				
+
+			</form>
 		</div>
 	</div>
 	</div>

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from apps.users_app.models import *
 from apps.comments_app.models import *
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
 
 # Create your views here.
 def submitComment(request):
@@ -8,9 +10,17 @@ def submitComment(request):
 
 	content = request.POST['content']
 
-	Comment.objects.create(content = content, queen = queen)
+	comment = Comment.objects.create(content = content, queen = queen)
 
-	return redirect('/user')
+	return JsonResponse(model_to_dict(comment))
+
+	# return redirect('/user')
 
 def deleteComment(request, id):
-	pass
+	comment = Comment.objects.get(id = id)
+
+	queen = comment.queen
+
+	comment.delete()
+
+	return redirect('/user/'+str(queen.id))

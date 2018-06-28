@@ -11,7 +11,7 @@
 <body>
 	<nav class="navbar navbar-dark bg-dark">	
 		<span class="navbar-text">
-		    Hi there {{request.session.dragName}}
+		    Hi there {{user.dragName}}
 		</span>
 	 	<a href = "/logout"><button class="btn btn-outline-success" type="button">Logout</button></a>
 	</nav>
@@ -22,19 +22,20 @@
    		{% endfor %}
 		</ul>
 	{% endif %}
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm">
 
-				<p>Name: {{user.dragName}}</p>
-				<p>Of house {{user.houseName}}</p>
+				<h1>{{user.dragName}}</h1>
+				<h2>Of house {{user.houseName}}</h2>
+				{% if user.profile_image %}
+				<img class = "img-fluid" src = "{{user.profile_image.url}}">
+				{% endif %}
 
-				<img src = "{{user.profile_image.url}}">
-
-				<form action = "/uploadPicture" method = 'post' enctype="multipart/form-data">
+				<form class = "form-group" action = "/uploadPicture" method = 'post' enctype="multipart/form-data">
 					{% csrf_token %}
-					<input type="file" name="profile-picture">
-					<input type="submit" name="submit">
+					<input class = "form-control-file" type="file" name="profile-picture">
+					<button class = "form-control btn btn-primary" type="submit" name="submit">Update Picture</button>
 				</form>
 
 			</div>
@@ -43,7 +44,8 @@
 				
 				<div class="card" >
 				  <div class="card-body">
-				    <h5 class="card-title">Card title</h5>
+				    <h5 class="card-title">Make a new event</h5>
+
 				    <form class = "form-group" action = "/events/submitEvent/{{user.id}}" method = "post">
 				    	{% csrf_token %}
 						<label>Location:</label>
@@ -55,7 +57,7 @@
 						<label>Date and time:</label>
 						<input class = "form-control" type="datetime-local" name="dateTime">
 
-				    	<button class = "btn btn-primary">+</button>
+				    	<button class = "btn btn-primary" type="submit">+</button>
 
 				    </form>
 				  </div>

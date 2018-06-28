@@ -16,8 +16,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" >
 </head>
 <body>
-<div class="container">
-
+<div class="container-fluid">
+<video autoplay muted loop id="myVideo">
+  <source src="{% static 'dragVideo.mp4' %}" type="video/mp4">
+</video>
 	<nav class="navbar navbar-light bg-light">
 	  <form action = "/login" method = "post" class="form-inline">
 	  	{% csrf_token %}
@@ -47,13 +49,12 @@
 </ul>
 {% endif %}
 
-	<div class="row">
-		<div class="col col-6">
+	<div class="row content">
+		<div class="col col-12 text-center search">
 			<h3>Search for a queen! </h3>
 
 			<div class="form-signin">
-			    <h3 class="form-signin-heading">ManUtd Players</h3>
-				<input id="q" type="text" placeholder="Search player names here..." />
+				<input id="q" type="text" placeholder="What's the tea..." autocomplete="off"/>
 			    <br/>
 			    <div class="margin">
 			        <div id="results"></div>

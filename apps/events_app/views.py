@@ -16,5 +16,11 @@ def submitEvent(request, queen):
 	return redirect('/home')
 
 
-def deleteEvent(request):
-	pass
+def deleteEvent(request, id):
+	event = Event.objects.get(id = id)
+
+	queen = event.queen
+
+	event.delete()
+
+	return redirect("/user/" + str(queen.id))

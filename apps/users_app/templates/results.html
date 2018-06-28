@@ -1,7 +1,10 @@
 
 {% if results %}
 {% for r in results %}
-	<a href = "/user">{{ r.dragName}} of house {{ r.houseName }}</a>
+	<div class = "card result"><a href = "/user/{{r.id}}">{{ r.dragName}} of house {{ r.houseName }} 
+	{% if r.profile_image.url %}
+		<div class = "search-image"><img src = "{{ r.profile_image.url}}">d</a></div>
+	{% endif%}
 {% endfor %}
 {% else %}
 	<div class="note">
